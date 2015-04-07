@@ -118,7 +118,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 					sb.append("location=" + latitude + "," + longitude);
 					sb.append("&radius=5000");
 					sb.append("&types=" + "restaurent");
-					sb.append("&key=AIzaSyBXyxFNga8LB59bR-bvMB45AraR75-IzCA");
+					sb.append("&key=AIzaSyC5l9RsBGE-k8S82aPjuZnBWjtrAEGeq2M");
 					sb.append("&sensor=true");
 
 					// Creating a new non-ui thread task to download json data
