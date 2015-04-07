@@ -35,7 +35,7 @@ public static double lat;
 public static double lng;
 public static List<PlaceDetails> listOfplaces;
 ListView mailListView;
-List<Item> totalItemList;
+List<PlaceDetails> totalItemList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -118,8 +118,15 @@ List<Item> totalItemList;
 		}
 		
 	}
+	
 	@Override
 	public void setData(ArrayAdapter<Item> adapter, ArrayList<Item> itemList) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setDetails(SingleItemAdapter adapter,
+			List<PlaceDetails> itemList) {
 		totalItemList = itemList;
 		mailListView.setAdapter(adapter);
 		mailListView
@@ -129,7 +136,7 @@ List<Item> totalItemList;
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 
-						Item singleItem = totalItemList.get(position);
+						PlaceDetails singleItem = totalItemList.get(position);
 
 						Intent intent = new Intent(PlaceDetailsActivity.this,
 								PreviewActivity.class);
@@ -138,6 +145,5 @@ List<Item> totalItemList;
 
 					}
 				});
-		
 	}
 }

@@ -1,10 +1,19 @@
 package com.example.group1a_hw05;
 
-public class PlaceDetails {
+import java.io.Serializable;
+
+public class PlaceDetails implements Serializable {
 	
 	private double lat;
 	private double lngt;
-	private String placeName,vicinity;
+	private String placeName,vicinity,url;
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	@Override
 	public String toString() {
 		return "PlaceDetails [lat=" + lat + ", lngt=" + lngt + ", placeName="

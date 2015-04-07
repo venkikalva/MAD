@@ -19,14 +19,14 @@ import android.widget.TextView;
  * */
 public class SingleItemAdapter extends ArrayAdapter<Item> {
 	Context context;
-	ArrayList<Item> progItems;
+	ArrayList<PlaceDetails> progItems;
 	
 
 	public SingleItemAdapter(Context context,
-			ArrayList<Item> objects) {
-		super(context, R.layout.activity_single_item, R.id.textView1,objects);
+			List<PlaceDetails> list) {
+		super(context, R.layout.activity_single_item);
 		this.context = context;
-		this.progItems = objects;
+		this.progItems = (ArrayList<PlaceDetails>) list;
 		//this.mResource = resource;
 		// TODO Auto-generated constructor stub
 	}
@@ -61,15 +61,15 @@ public class SingleItemAdapter extends ArrayAdapter<Item> {
 		TextView price = holder.price;
 		ImageView thumbnail = holder.thumbnail;
 		TextView dateval = holder.date;
-		title.setText(progItems.get(position).getTitle());
-		devname.setText(progItems.get(position).getDevname());
-		price.setText(progItems.get(position).getPrice()+"");
-		String imgLink = progItems.get(position).getImgUrl();
+		title.setText(progItems.get(position).getPlaceName());
+		/*devname.setText(progItems.get(position).getDevname());
+		price.setText(progItems.get(position).getPrice()+"");*/
+		String imgLink = progItems.get(position).getUrl();
 		if (imgLink == null || "".equalsIgnoreCase(imgLink)) {
 			thumbnail.setImageResource(R.drawable.photo_not_found);
 		} else
 			Picasso.with(context).load(imgLink).into(thumbnail);
-		dateval.setText(progItems.get(position).getDate());
+		//dateval.setText(progItems.get(position).getDate());
 		return convertView;
 	}
 

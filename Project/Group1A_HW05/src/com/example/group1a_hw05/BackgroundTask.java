@@ -65,7 +65,7 @@ public class BackgroundTask {
 					sb.append("&sensor=true");
 
 					// Creating a new non-ui thread task to download json data
-					PlacesTask placesTask = new  BackgroundTask.PlacesTask();
+					PlacesTask placesTask = new  BackgroundTask.PlacesTask(mContext);
 
 					// Invokes the "doInBackground()" method of the class
 					// PlaceTask
@@ -79,7 +79,10 @@ public class BackgroundTask {
 	}
 
 	static class PlacesTask extends AsyncTask<String, Integer, String> {
-
+		Context mContext;
+		public PlacesTask(Context context) {
+			this.mContext = context;
+		}
 		String data = null;
 
 		// Invoked by execute() method of this object
@@ -96,7 +99,7 @@ public class BackgroundTask {
 		// Executed after the complete execution of doInBackground() method
 		@Override
 		protected void onPostExecute(String result) {
-			ParserTask parserTask = new ParserTask();
+			ParserTask parserTask = new ParserTask(mContext);
 
 			// Start parsing the Google places in JSON format
 			// Invokes the "doInBackground()" method of the class ParseTask
@@ -148,7 +151,10 @@ public class BackgroundTask {
 
 	static class ParserTask extends
 			AsyncTask<String, Integer, List<PlaceDetails>> {
-
+		Context mContext;
+		public ParserTask(Context context) {
+			this.mContext = context;
+		}
 		JSONObject jObject;
 
 		// Invoked by execute() method of this object
@@ -174,7 +180,12 @@ public class BackgroundTask {
 		// Executed after the complete execution of doInBackground() method
 		@Override
 		protected void onPostExecute(List<PlaceDetails> list) {
-			PlaceDetailsActivity.listOfplaces = list;
+			SingleItemAdapter adapter = new SingleItemAdapter(mContext
+					, list);
+			PlaceDetailsActivity pd = new PlaceDetailsActivity();
+			pd.setDetails(adapter, list);
+			
+			
 		}
 	}
 }

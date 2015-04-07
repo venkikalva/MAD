@@ -15,6 +15,7 @@ import com.parse.entity.mime.MinimalField;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.util.Log;
 import android.view.View;
@@ -63,10 +64,13 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.button2:
+			Intent intent = new Intent(HomeActivity.this,TripNameActivity.class);
+			startActivity(intent);/*
+			
 			String placeName = cityname.getText().toString();
 
 			new GeoTask(HomeActivity.this).execute(placeName);
-			break;
+*/			break;
 		case R.id.button1:
 
 			break;
@@ -118,7 +122,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 					sb.append("location=" + latitude + "," + longitude);
 					sb.append("&radius=5000");
 					sb.append("&types=" + "restaurent");
-					sb.append("&key=AIzaSyC5l9RsBGE-k8S82aPjuZnBWjtrAEGeq2M");
+					sb.append("&key=AIzaSyAWJ7z7eaqiwfxL7S0eTnukKjUUH4fBFiY");
 					sb.append("&sensor=true");
 
 					// Creating a new non-ui thread task to download json data

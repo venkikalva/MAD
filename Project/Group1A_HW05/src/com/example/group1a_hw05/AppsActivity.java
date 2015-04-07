@@ -96,10 +96,10 @@ public class AppsActivity extends Activity implements SetUpData {
 			Log.d("demo", result.toString());
 			progress.cancel();
 			totalItemList = result;
-			SingleItemAdapter adapter = new SingleItemAdapter(
+			/*SingleItemAdapter adapter = new SingleItemAdapter(
 					AppsActivity.this, result);
-			setData(adapter, totalItemList);
-			adapter.setNotifyOnChange(true);
+			setData(adapter, totalItemList);*/
+			//adapter.setNotifyOnChange(true);
 			super.onPostExecute(result);
 		}
 
@@ -131,131 +131,8 @@ public class AppsActivity extends Activity implements SetUpData {
 				viewAll = "no";	
 			}
 			return true;
-		} else if (id == R.id.action_view_fav) {
-			viewAll = "yes";
-			favList = new ArrayList<Item>();
-			ParseQuery<ParseObject> query = ParseQuery.getQuery("FavList");
-			query.whereEqualTo("user", ParseUser.getCurrentUser());
-			query.findInBackground(new FindCallback<ParseObject>() {
-				@Override
-				public void done(List<ParseObject> objects, ParseException e) {
-					if(objects.size()>0){
+		 
 
-						Item item;
-						Gson gson = new Gson();
-						for (ParseObject p : objects) {
-							String favObj = p.getString("favItem");
-							item = gson.fromJson(favObj, Item.class);
-							favList.add(item);
-						}
-						SingleItemAdapter adapter = new SingleItemAdapter(
-								AppsActivity.this, favList);
-						setData(adapter, favList);
-
-					}else{
-
-						Toast.makeText(AppsActivity.this," No Favourites to show", Toast.LENGTH_LONG).show();
-							
-					}
-					}
-				
-			});
-
-			/*
-			 * mainListView.setAdapter(adapter);
-			 * adapter.setNotifyOnChange(true);
-			 */
-
-			return true;
-		} else if (id == R.id.action_clear_fav) {
-			viewAll = "yes";
-			favList = new ArrayList<Item>();
-			ParseQuery<ParseObject> query = ParseQuery.getQuery("FavList");
-			query.whereEqualTo("user", ParseUser.getCurrentUser());
-			query.findInBackground(new FindCallback<ParseObject>() {
-				@Override
-				public void done(List<ParseObject> objects, ParseException e) {
-					if(objects.size()>0){
-
-						for (ParseObject p : objects) {
-							p.deleteInBackground();
-						}
-						SingleItemAdapter adapter = new SingleItemAdapter(
-								AppsActivity.this, favList);
-						setData(adapter, favList);
-						Toast.makeText(AppsActivity.this," Cleared Favourites Succesfully", Toast.LENGTH_LONG).show();
-					}else{
-						Toast.makeText(AppsActivity.this," No Favourites to clear", Toast.LENGTH_LONG).show();
-					}	
-					}
-			});
-
-			return true;
-		} else if (id == R.id.action_view_shared) {
-			viewAll = "yes";
-			favList = new ArrayList<Item>();
-			ParseQuery<ParseObject> sharedQuery = ParseQuery
-					.getQuery("SharedList");
-			sharedQuery.whereEqualTo("sharedUser", ParseUser.getCurrentUser()
-					.getEmail());
-			sharedQuery.findInBackground(new FindCallback<ParseObject>() {
-
-				@Override
-				public void done(List<ParseObject> objects, ParseException e) {
-					if(objects.size()>0){
-
-						String sharedTune = null;
-						if (e == null) {
-							for (ParseObject p : objects) {
-								sharedTune = p.getString("sharedItem");
-								gson = new Gson();
-								sitem = gson.fromJson(sharedTune, Item.class);
-								favList.add(sitem);
-							}
-							SingleItemAdapter adapter = new SingleItemAdapter(
-									AppsActivity.this, favList);
-							setData(adapter, favList);
-						}
-
-					}else{
-						Toast.makeText(AppsActivity.this," No SharedList to show", Toast.LENGTH_LONG).show();
-						
-					}
-	
-					}			});
-
-			/*
-			 * mainListView.setAdapter(adapter);
-			 * adapter.setNotifyOnChange(true);
-			 */
-			return true;
-		} else if (id == R.id.action_clear_shared) {
-			viewAll = "yes";
-			favList = new ArrayList<Item>();
-			ParseQuery<ParseObject> query = ParseQuery.getQuery("SharedList");
-			query.whereEqualTo("sharedUser", ParseUser.getCurrentUser()
-					.getEmail());
-			query.findInBackground(new FindCallback<ParseObject>() {
-				@Override
-				public void done(List<ParseObject> objects, ParseException e) {
-					if(objects.size()>0){
-
-						for (ParseObject p : objects) {
-							p.deleteInBackground();
-						}
-						SingleItemAdapter adapter = new SingleItemAdapter(
-								AppsActivity.this, favList);
-						setData(adapter, favList);
-						Toast.makeText(AppsActivity.this," Cleared SharedList Succesfully", Toast.LENGTH_LONG).show();
-					}else{
-						Toast.makeText(AppsActivity.this,"No SharedList to clear", Toast.LENGTH_LONG).show();
-					}	
-					}
-				
-			});
-
-			// mainListView.setAdapter(adapter);
-			return true;
 		} else if (id == R.id.action_logout) {
 
 			ParseUser.getCurrentUser();
@@ -302,6 +179,14 @@ public class AppsActivity extends Activity implements SetUpData {
 		}else{
 			finish();
 		}
+	}
+
+	
+	@Override
+	public void setDetails(SingleItemAdapter adapter,
+			List<PlaceDetails> itemList) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
