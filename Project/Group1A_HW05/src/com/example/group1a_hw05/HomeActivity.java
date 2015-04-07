@@ -95,11 +95,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 			Geocoder geoCoder = new Geocoder(mContext);
 
 			try {
-				Log.d("Inclass9b", "In try");
+				Log.d("Project", "In try");
 				addressList = geoCoder.getFromLocationName(params[0], 1);
 
 			} catch (IOException e) {
-				Log.d("InClass9b", e.toString());
+				Log.d("Project", e.toString());
 				e.printStackTrace();
 			}
 
@@ -109,9 +109,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 		@Override
 		protected void onPostExecute(List<Address> result) {
 			if (result == null) {
-				Log.d("Inclass9b", "Result null");
+				Log.d("Project", "Result null");
 			} else {
-				Log.d("Inclass9b", "Size: " + result.size());
+				Log.d("Project", "Size: " + result.size());
 				if (result.size() > 0) {
 					fetchedAddress = result.get(0);
 					latitude = fetchedAddress.getLatitude();
@@ -149,7 +149,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 			try {
 				data = downloadUrl(url[0]);
 			} catch (Exception e) {
-				Log.d("Background Task", e.toString());
+				Log.d("Project:Background Task", e.toString());
 			}
 			return data;
 		}
@@ -197,7 +197,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 			br.close();
 
 		} catch (Exception e) {
-			Log.d("Exception while downloading url", e.toString());
+			Log.d("Project: Exception while downloading url", e.toString());
 		} finally {
 			iStream.close();
 			urlConnection.disconnect();
@@ -227,7 +227,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 				places = placeJsonParser.parse(jObject);
 
 			} catch (Exception e) {
-				Log.d("Exception", e.toString());
+				Log.d("Project: Exception", e.toString());
 			}
 			return places;
 		}

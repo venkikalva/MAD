@@ -6,8 +6,10 @@ import java.util.List;
 import com.example.group1a_hw05.HomeActivity.GeoTask;
 
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -127,6 +129,7 @@ List<PlaceDetails> totalItemList;
 	@Override
 	public void setDetails(SingleItemAdapter adapter,
 			List<PlaceDetails> itemList) {
+		Log.d("list",itemList.toString());
 		totalItemList = itemList;
 		mailListView.setAdapter(adapter);
 		mailListView
