@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Group1A_HW05</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_apps">AppsActivity</string>
+    <string name="title_activity_preview">PreviewActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="view_all">View All</string>
+    <string name="view_fav">View Favourites</string>
+    <string name="clear_fav">Clear Favourites</string>
+    <string name="view_shared">View Shared</string>
+    <string name="clear_shared">Clear Shared</string>
+    <string name="applist">AppList</string>
+    <string name="history">History</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_add">Add</string>
+    <string name="title_activity_to_do">ToDoActivity</string>
+    <string name="name">First Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="signup">Sign Up</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_account">Create New Account</string>
+    <string name="firstname">FirstName</string>
+    <string name="lastname">LastName</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="addtrip">Add Trip</string>
+    <string name="viewtrip">View Trips</string>
+    <string name="title_activity_trip_name">TripNameActivity</string>
+    <string name="tripname">TripName</string>
+    <string name="next">Continue</string>
+    <string name="title_activity_select_place">SelectPlaceActivity</string>
+    <string name="title_activity_place_details">PlaceDetailsActivity</string>
+
+</resources>
