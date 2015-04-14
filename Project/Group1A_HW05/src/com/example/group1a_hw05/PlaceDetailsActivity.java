@@ -2,11 +2,6 @@ package com.example.group1a_hw05;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.group1a_hw05.HomeActivity.GeoTask;
-
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.util.Log;
@@ -19,8 +14,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -127,7 +120,7 @@ List<PlaceDetails> totalItemList;
 		
 	}
 	@Override
-	public void setDetails(SingleItemAdapter adapter,
+	public  void setDetails(SingleItemAdapter adapter,
 			List<PlaceDetails> itemList) {
 		Log.d("list",itemList.toString());
 		totalItemList = itemList;
@@ -149,4 +142,6 @@ List<PlaceDetails> totalItemList;
 					}
 				});
 	}
+	
+		
 }

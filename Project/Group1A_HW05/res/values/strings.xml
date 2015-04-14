@@ -38,5 +38,9 @@
     <string name="next">Continue</string>
     <string name="title_activity_select_place">SelectPlaceActivity</string>
     <string name="title_activity_place_details">PlaceDetailsActivity</string>
+    <string name="title">Title</string>
+    <string name="address">Adderss</string>
+    <string name="phone">Phone</string>
+    <string name="date">Date</string>
 
 </resources>

@@ -13,18 +13,20 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.media.Image.Plane;
 import android.os.AsyncTask;
 import android.util.Log;
 public class BackgroundTask {
 	static Address fetchedAddress;
 	static double latitude;
 	static double longitude;
-
+static PlaceDetailsActivity activity;
 	static class GeoTask extends AsyncTask<String, Void, List<Address>> {
 		Context mContext;
 
 		public GeoTask(Context context) {
 			this.mContext = context;
+			
 		}
 
 		@Override
@@ -60,8 +62,8 @@ public class BackgroundTask {
 							"https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
 					sb.append("location=" + latitude + "," + longitude);
 					sb.append("&radius=5000");
-					sb.append("&types=" + "restaurent");
-					sb.append("&key=AIzaSyBXyxFNga8LB59bR-bvMB45AraR75-IzCA");
+					sb.append("&types=" + "restaurant");
+					sb.append("&key=AIzaSyB4LICuTqTClu8vkkQvpM7v2US23LANqPk");
 					sb.append("&sensor=true");
 
 					// Creating a new non-ui thread task to download json data

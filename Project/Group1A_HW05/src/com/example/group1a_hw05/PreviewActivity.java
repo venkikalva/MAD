@@ -38,8 +38,6 @@ public class PreviewActivity extends Activity implements View.OnClickListener {
 	SharedPreferences preference;
 	String url;
 	Item singleItem = null;
-	ImageView rating;
-	ImageView share;
 	ParseUser currentUser;
 	ArrayList<String> usernames;
 	List<ParseUser> sharedUser;
@@ -52,12 +50,7 @@ public class PreviewActivity extends Activity implements View.OnClickListener {
 		currentUser = ParseUser.getCurrentUser();
 		title = (TextView) findViewById(R.id.textView1);
 		image = (ImageView) findViewById(R.id.imageView1);
-		rating = (ImageView) findViewById(R.id.imageView2);
-		share = (ImageView) findViewById(R.id.imageView3);
-		rating.setOnClickListener(this);
-		share.setOnClickListener(this);
 		image.setOnClickListener(this);
-		registerForContextMenu(share);
 		if (getIntent().getExtras() != null) {
 			singleItem = (Item) getIntent().getExtras().getSerializable(
 					"single");
@@ -88,22 +81,7 @@ public class PreviewActivity extends Activity implements View.OnClickListener {
 
 			}
 		});
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FavList");
-		query.whereEqualTo("favID", String.valueOf(singleItem.getId()));
-		query.whereEqualTo("user", currentUser);
-		query.findInBackground(new FindCallback<ParseObject>() {
-
-			@Override
-			public void done(List<ParseObject> objList, ParseException arg1) {
-				for (ParseObject toDoItem : objList) {
-					if (toDoItem != null) {
-						rating.setImageResource(R.drawable.rating_important);
-					} else {
-						rating.setImageResource(R.drawable.rating_not_important);
-					}
-				}
-			}
-		});
+	
 	}
 
 	@Override
@@ -124,70 +102,7 @@ public class PreviewActivity extends Activity implements View.OnClickListener {
 			}
 
 			break;
-		case R.id.imageView2:
-
-			ParseQuery<ParseObject> query = ParseQuery.getQuery("FavList");
-			query.whereEqualTo("favID", String.valueOf(singleItem.getId()));
-			query.whereEqualTo("user", currentUser);
-			query.findInBackground(new FindCallback<ParseObject>() {
-
-				@Override
-				public void done(List<ParseObject> objList, ParseException arg1) {
-
-					if (objList.size() > 0) {
-						for (ParseObject p : objList) {
-
-							p.deleteInBackground(new DeleteCallback() {
-
-								@Override
-								public void done(ParseException e) {
-									if (e == null) {
-										rating.setImageResource(R.drawable.rating_not_important);
-									} else {
-										Toast.makeText(PreviewActivity.this,
-												"Server Encourted a problem",
-												Toast.LENGTH_LONG).show();
-									}
-
-								}
-							});
-
-						}
-
-					} else {
-						addToFav();
-
-					}
-
-				}
-
-				private void addToFav() {
-					ParseObject todo = new ParseObject("FavList");
-					Gson gson = new Gson();
-					String json = gson.toJson(singleItem);
-					todo.put("favItem", json);
-					todo.put("favID", String.valueOf(singleItem.getId()));
-					todo.put("user", currentUser);
-					todo.saveInBackground(new SaveCallback() {
-
-						@Override
-						public void done(ParseException e) {
-							// TODO Auto-generated method stub
-							if (e == null) {
-							} else {
-								Toast.makeText(PreviewActivity.this,
-										e.getMessage(), Toast.LENGTH_LONG)
-										.show();
-							}
-						}
-					});
-					rating.setImageResource(R.drawable.rating_important);
-				}
-			});
-			break;
-		case R.id.imageView3:
-			share.showContextMenu();
-			break;
+		
 		default:
 			break;
 		}
