@@ -41,7 +41,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		addnew = (Button) findViewById(R.id.button2);
-		viewtrip = (Button) findViewById(R.id.button1);
+		viewtrip = (Button) findViewById(R.id.add);
 		cityname = (EditText) findViewById(R.id.editText1);
 		addnew.setOnClickListener(this);
 		viewtrip.setOnClickListener(this);
@@ -71,7 +71,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
 			new GeoTask(HomeActivity.this).execute(placeName);
 */			break;
-		case R.id.button1:
+		case R.id.add:
 
 			break;
 

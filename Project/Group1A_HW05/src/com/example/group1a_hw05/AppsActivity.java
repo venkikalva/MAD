@@ -7,14 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -26,7 +21,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 /*
  * Team : Ashraf Cherukuru, Savitha Doure, Venkatesh Kalva
  * */
@@ -39,6 +33,7 @@ public class AppsActivity extends Activity implements SetUpData {
 	ArrayList<Item> totalItemList = new ArrayList<Item>();
 	Item sitem;
 	Gson gson;
+	
 	static String viewAll = "no";
 	ArrayList<Item> favList;
 
@@ -124,7 +119,7 @@ public class AppsActivity extends Activity implements SetUpData {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_view_all) {
+		if (id == R.id.add) {
 			if(viewAll.equalsIgnoreCase("yes")){
 				new GetListPrograms("applist")
 				.execute("https://itunes.apple.com/us/rss/topgrossingapplications/limit=25/xml");
@@ -133,16 +128,6 @@ public class AppsActivity extends Activity implements SetUpData {
 			return true;
 		 
 
-		} else if (id == R.id.action_logout) {
-
-			ParseUser.getCurrentUser();
-			ParseUser.logOut();
-			Intent intent = new Intent(AppsActivity.this, LoginActivity.class);
-			startActivity(intent);
-			Toast.makeText(AppsActivity.this, "Loged Out Successfully",
-					Toast.LENGTH_LONG).show();
-			finish();
-			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -182,9 +167,10 @@ public class AppsActivity extends Activity implements SetUpData {
 	}
 
 	
+
 	@Override
 	public void setDetails(SingleItemAdapter adapter,
-			List<PlaceDetails> itemList) {
+			List<PlaceDetails> itemList, Context context) {
 		// TODO Auto-generated method stub
 		
 	}

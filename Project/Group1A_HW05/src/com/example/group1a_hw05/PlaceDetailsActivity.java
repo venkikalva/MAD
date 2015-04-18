@@ -2,9 +2,12 @@ package com.example.group1a_hw05;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-public class PlaceDetailsActivity extends Activity implements View.OnClickListener,SetUpData{
+public class PlaceDetailsActivity extends Activity implements View.OnClickListener,BackgroundTask.senddata{
 ImageView search;
 ImageView gps;
 EditText cityname;
@@ -31,23 +34,29 @@ public static double lng;
 public static List<PlaceDetails> listOfplaces;
 ListView mailListView;
 List<PlaceDetails> totalItemList;
+Context context;
+View view;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_place_details);
+		 view = findViewById(R.layout.activity_place_details);
+		
 		locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		search = (ImageView)findViewById(R.id.search);
 		mailListView = (ListView) findViewById(R.id.listView1);
 		gps = (ImageView)findViewById(R.id.gps);
 		cityname = (EditText)findViewById(R.id.cityname);
 		search.setOnClickListener(this);
+		context=this;
 	}
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.search:
 			String cityName= cityname.getText().toString();
-			new BackgroundTask.GeoTask(PlaceDetailsActivity.this).execute(cityName);
+			new BackgroundTask.GeoTask(PlaceDetailsActivity.this,PlaceDetailsActivity.this).execute(cityName);
+			//new BackgroundTask.ParserTask(PlaceDetailsActivity.this,PlaceDetailsActivity.this);
 			break;
 		case R.id.gps:
 			if(!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
@@ -100,7 +109,7 @@ List<PlaceDetails> totalItemList;
 					
 					@Override
 					public void onLocationChanged(Location location) {
-						new BackgroundTask.GeoTask(PlaceDetailsActivity.this).execute(location.toString());
+						new BackgroundTask.GeoTask(PlaceDetailsActivity.this,PlaceDetailsActivity.this).execute(location.toString());
 						
 					}
 				};
@@ -113,16 +122,22 @@ List<PlaceDetails> totalItemList;
 		}
 		
 	}
+//	@Override
+//	public void setDetails(SingleItemAdapter adapter, List<PlaceDetails> list) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
-	@Override
-	public void setData(ArrayAdapter<Item> adapter, ArrayList<Item> itemList) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public  void setDetails(SingleItemAdapter adapter,
 			List<PlaceDetails> itemList) {
 		Log.d("list",itemList.toString());
+		//PlaceDetailsActivity context = (PlaceDetailsActivity) mcontext;
+		//Context context = PlaceDetailsActivity.this;
+		
+		//mailListView = (ListView) ((PlaceDetailsActivity) context).findViewById(R.id.listView1);
+		//mailListView=(ListView) view.findViewById(R.id.listView1);
 		totalItemList = itemList;
 		mailListView.setAdapter(adapter);
 		mailListView
@@ -142,6 +157,7 @@ List<PlaceDetails> totalItemList;
 					}
 				});
 	}
+	
 	
 		
 }

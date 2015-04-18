@@ -4,17 +4,8 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/photo_not_found" />
-
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/cityname1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -25,7 +16,7 @@
         android:text="@string/title" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tempdeg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"
@@ -36,7 +27,7 @@
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignBottom="@+id/tempdeg"
         android:layout_centerHorizontal="true"
         android:text="TextView" />
 
@@ -44,16 +35,16 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/wind"
+        android:layout_below="@+id/wind"
         android:layout_marginTop="46dp"
         android:text="@string/date" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView2"
+        android:layout_alignRight="@+id/tempdeg"
         android:layout_centerVertical="true"
         android:text="@string/phone" />
 
@@ -61,8 +52,8 @@
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignBaseline="@+id/wind"
+        android:layout_alignBottom="@+id/wind"
         android:layout_alignLeft="@+id/address"
         android:text="TextView" />
 
@@ -76,10 +67,28 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignBottom="@+id/date"
         android:layout_toLeftOf="@+id/phone"
+        android:src="@drawable/sun" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:text="@string/add" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/wind"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
         android:src="@drawable/photo_not_found" />
 
 </RelativeLayout>

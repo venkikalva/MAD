@@ -6,8 +6,14 @@ public class PlaceDetails implements Serializable {
 	
 	private double lat;
 	private double lngt;
-	private String placeName,vicinity,url;
+	private String placeName,vicinity,url,imageUrl;
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 	public String getUrl() {
 		return url;
 	}

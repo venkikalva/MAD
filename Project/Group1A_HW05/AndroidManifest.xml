@@ -27,7 +27,7 @@
 
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-  to match your app's package name + ".permission.C2D_MESSAGE".
+  to match your app's package name + ".permission.C2D_MESSAGE".
     -->
     <permission
         android:name="com.example.group1a_hw05"
@@ -119,6 +119,18 @@
         <activity
             android:name=".PlaceDetailsActivity"
             android:label="@string/title_activity_place_details" >
+        </activity>
+        <activity
+            android:name=".WeatherActivity"
+            android:label="@string/title_activity_weather" >
+        </activity>
+        <activity
+            android:name=".EditTripActivity"
+            android:label="@string/title_activity_edit_trip" >
+        </activity>
+        <activity
+            android:name=".ViewTripActivity"
+            android:label="@string/title_activity_view_trip" >
         </activity>
     </application>
 

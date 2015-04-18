@@ -12,7 +12,7 @@
         android:src="@drawable/photo_not_found" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/cityname1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,31 +21,31 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignLeft="@+id/humidity"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tempdeg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignBaseline="@+id/wind"
+        android:layout_alignBottom="@+id/wind"
         android:layout_alignParentRight="true"
         android:layout_marginRight="26dp"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_above="@+id/wind"
+        android:layout_alignLeft="@+id/cityname1"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

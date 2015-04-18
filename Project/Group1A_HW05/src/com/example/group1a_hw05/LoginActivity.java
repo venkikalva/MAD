@@ -30,7 +30,8 @@ public class LoginActivity extends Activity {
 		/*Parse.initialize(this, "o5hvWIXPl0iYxLty9meLyhzoQ4XBlE7Rwz9X85GS",
 				"0CfuSfArKp0YYt3DShN9sYerQiuOENEgV11ATqO1");
 		*/
-		Parse.initialize(this, "6MLGqkQz8v7drYBU7wKFaKbBdn2apWjoylkiXJ26", "8HTkoAQvSj9SKjabEsxuiO3fYwViOfH7MhGd831I");
+//		Parse.initialize(this, "6MLGqkQz8v7drYBU7wKFaKbBdn2apWjoylkiXJ26", "8HTkoAQvSj9SKjabEsxuiO3fYwViOfH7MhGd831I");
+		Parse.initialize(this, "3YdHC5FIhunoi7rYb7Vm2K9PaS7TTUKceDl55XVC", "q8OSsh3mC4Sjrs4OhWUs1zjPdE4zjlQlnOGkLmyB");
 		etEmail = (EditText) findViewById(R.id.editTextEmail);
 		etPassword = (EditText) findViewById(R.id.editTextPassword);
 

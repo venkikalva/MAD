@@ -17,19 +17,20 @@ import android.widget.TextView;
 /*
  * Team : Ashraf Cherukuru, Savitha Doure, Venkatesh Kalva
  * */
-public class SingleItemAdapter extends ArrayAdapter<Item> {
+public class SingleItemAdapter extends ArrayAdapter<PlaceDetails> {
+	
+
 	Context context;
 	ArrayList<PlaceDetails> progItems;
 	
-
 	public SingleItemAdapter(Context context,
-			List<PlaceDetails> list) {
-		super(context, R.layout.activity_single_item);
-		this.context = context;
-		this.progItems = (ArrayList<PlaceDetails>) list;
-		//this.mResource = resource;
+			 List<PlaceDetails> objects) {
+		super(context, R.layout.activity_single_item, R.id.cityname1, objects);
+		this.context=context;
+		this.progItems=(ArrayList<PlaceDetails>) objects;
 		// TODO Auto-generated constructor stub
 	}
+
 
 
 
@@ -42,15 +43,15 @@ public class SingleItemAdapter extends ArrayAdapter<Item> {
 			convertView = inflater.inflate(R.layout.activity_single_item,
 					parent, false);
 			holder = new ViewHolder();
-			holder.title = (TextView) convertView.findViewById(R.id.textView1);
+			holder.title = (TextView) convertView.findViewById(R.id.cityname1);
 			holder.devName = (TextView) convertView
-					.findViewById(R.id.textView3);
+					.findViewById(R.id.humidity);
 			holder.thumbnail = (ImageView) convertView
 					.findViewById(R.id.imageView1);
 			holder.price = (TextView) convertView
-					.findViewById(R.id.textView2);
+					.findViewById(R.id.tempdeg);
 			holder.date = (TextView) convertView
-					.findViewById(R.id.textView4);
+					.findViewById(R.id.wind);
 			convertView.setTag(holder);
 
 		}
@@ -64,7 +65,7 @@ public class SingleItemAdapter extends ArrayAdapter<Item> {
 		title.setText(progItems.get(position).getPlaceName());
 		/*devname.setText(progItems.get(position).getDevname());
 		price.setText(progItems.get(position).getPrice()+"");*/
-		String imgLink = progItems.get(position).getUrl();
+		String imgLink = progItems.get(position).getImageUrl();
 		if (imgLink == null || "".equalsIgnoreCase(imgLink)) {
 			thumbnail.setImageResource(R.drawable.photo_not_found);
 		} else

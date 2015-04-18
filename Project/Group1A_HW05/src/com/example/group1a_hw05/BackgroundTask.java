@@ -21,11 +21,15 @@ public class BackgroundTask {
 	static double latitude;
 	static double longitude;
 static PlaceDetailsActivity activity;
+
 	static class GeoTask extends AsyncTask<String, Void, List<Address>> {
 		Context mContext;
+		senddata listner;
 
-		public GeoTask(Context context) {
+		public GeoTask(Context context,senddata activity) {
 			this.mContext = context;
+			this.listner=activity;
+			
 			
 		}
 
@@ -67,7 +71,7 @@ static PlaceDetailsActivity activity;
 					sb.append("&sensor=true");
 
 					// Creating a new non-ui thread task to download json data
-					PlacesTask placesTask = new  BackgroundTask.PlacesTask(mContext);
+					PlacesTask placesTask = new  BackgroundTask.PlacesTask(mContext,listner);
 
 					// Invokes the "doInBackground()" method of the class
 					// PlaceTask
@@ -82,8 +86,10 @@ static PlaceDetailsActivity activity;
 
 	static class PlacesTask extends AsyncTask<String, Integer, String> {
 		Context mContext;
-		public PlacesTask(Context context) {
+		senddata listner;
+		public PlacesTask(Context context,senddata listner) {
 			this.mContext = context;
+			this.listner=listner;
 		}
 		String data = null;
 
@@ -101,7 +107,7 @@ static PlaceDetailsActivity activity;
 		// Executed after the complete execution of doInBackground() method
 		@Override
 		protected void onPostExecute(String result) {
-			ParserTask parserTask = new ParserTask(mContext);
+			ParserTask parserTask = new ParserTask(mContext,listner);
 
 			// Start parsing the Google places in JSON format
 			// Invokes the "doInBackground()" method of the class ParseTask
@@ -154,8 +160,10 @@ static PlaceDetailsActivity activity;
 	static class ParserTask extends
 			AsyncTask<String, Integer, List<PlaceDetails>> {
 		Context mContext;
-		public ParserTask(Context context) {
+		senddata listener;
+		public ParserTask(Context context,senddata listner) {
 			this.mContext = context;
+			this.listener=listner;
 		}
 		JSONObject jObject;
 
@@ -185,9 +193,15 @@ static PlaceDetailsActivity activity;
 			SingleItemAdapter adapter = new SingleItemAdapter(mContext
 					, list);
 			PlaceDetailsActivity pd = new PlaceDetailsActivity();
-			pd.setDetails(adapter, list);
+			
+			//pd.setDetails(adapter, list,mContext);
+			listener.setDetails(adapter, list);
 			
 			
 		}
+	}
+	
+	public interface senddata{
+		public void setDetails(SingleItemAdapter adapter,List<PlaceDetails> list);
 	}
 }

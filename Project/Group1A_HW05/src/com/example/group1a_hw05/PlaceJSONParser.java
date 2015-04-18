@@ -8,6 +8,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 public class PlaceJSONParser {
 	
 	
@@ -24,6 +29,36 @@ public class PlaceJSONParser {
 	        * where each json object represent a place
 	        */
 	        return getPlaces(jPlaces);
+	    }
+	 
+	 public WeatherDetail parseWeather(JSONObject jObject){
+		 
+	        JSONArray jPlaces = null;
+	        WeatherDetail weatherDetail = new WeatherDetail();
+	        List<DailyTemp> dailyTempList = new ArrayList<DailyTemp>();
+	        DailyTemp dailyTemp = null;
+	        try {
+	            /** Retrieves all the elements in the 'places' array */
+	          JSONObject  cityObj = jObject.getJSONObject("city");
+	          weatherDetail.setCityName(cityObj.getString("name"));
+	          weatherDetail.setCountry(cityObj.getString("country"));
+	          jPlaces= jObject.getJSONArray("list");
+	          for(int i=0;i<jPlaces.length();i++){
+	        	  dailyTemp = getPlaceTemp((JSONObject)jPlaces.get(i));
+	        	  dailyTempList.add(dailyTemp);  
+	          }
+	          
+	          Log.d("dailytemp", dailyTempList.toString());
+	          weatherDetail.setDailyTemp(dailyTempList);
+	          
+	          
+	        } catch (JSONException e) {
+	            e.printStackTrace();
+	        }
+	        /** Invoking getPlaces with the array of json object
+	        * where each json object represent a place
+	        */
+	        return weatherDetail;
 	    }
 	 
 	    private List<PlaceDetails> getPlaces(JSONArray jPlaces){
@@ -67,7 +102,12 @@ public class PlaceJSONParser {
 	                details.setVicinity(vicinity);
 	                
 	            }
-	 
+	            if(!jPlace.isNull("icon")){
+	                String imageUrl = jPlace.getString("icon");
+	                details.setImageUrl(imageUrl);
+	                
+	            }
+	            
 	            latitude = jPlace.getJSONObject("geometry").getJSONObject("location").getString("lat");
 	            details.setLat(Double.parseDouble(latitude));
 	            longitude = jPlace.getJSONObject("geometry").getJSONObject("location").getString("lng");
@@ -77,5 +117,38 @@ public class PlaceJSONParser {
 	        }
 	        return details;
 	    }
+	    private DailyTemp getPlaceTemp(JSONObject jPlace){
+	    	DailyTemp dailyTemp = new DailyTemp();
+	    	
+	    	try {
+				JSONObject temp = jPlace.getJSONObject("temp");
+				if(!temp.isNull("day")){
+	                dailyTemp.setDay(temp.getString("day"));
+	            }
+				if(!temp.isNull("min")){
+	                dailyTemp.setMin(temp.getString("min"));
+	            }if(!temp.isNull("max")){
+	                dailyTemp.setMax(temp.getString("max"));
+	            }if(!jPlace.isNull("humidity")){
+	                dailyTemp.setHumidity(jPlace.getString("humidity"));
+	            }if(!jPlace.isNull("speed")){
+	                dailyTemp.setSpeed(jPlace.getString("speed"));
+	            }
+	            JSONArray array= jPlace.getJSONArray("weather");
+	            for(int i=0;i<array.length();i++){
+	            	//dailyTemp.setMain(array.getString(index));
+	            	
+	            }
+				
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return dailyTemp;
+	    	
+	    	
+	    }
+	    
 
 }

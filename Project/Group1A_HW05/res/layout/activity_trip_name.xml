@@ -5,7 +5,7 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/cityname1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,16 +18,16 @@
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/cityname1"
+        android:layout_alignBottom="@+id/cityname1"
         android:layout_alignParentRight="true"
         android:ems="10" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/cityname1"
         android:layout_below="@+id/editText1"
         android:layout_marginTop="47dp"
         android:text="@string/cancel" />
@@ -36,7 +36,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBottom="@+id/add"
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp"
         android:text="@string/next" />
