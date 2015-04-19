@@ -2,8 +2,13 @@ package com.example.group1a_hw05;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
+import com.parse.ParsePushBroadcastReceiver;
 import com.parse.ParseUser;
+import com.parse.PushService;
+import com.parse.SaveCallback;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -32,6 +37,18 @@ public class LoginActivity extends Activity {
 		*/
 //		Parse.initialize(this, "6MLGqkQz8v7drYBU7wKFaKbBdn2apWjoylkiXJ26", "8HTkoAQvSj9SKjabEsxuiO3fYwViOfH7MhGd831I");
 		Parse.initialize(this, "3YdHC5FIhunoi7rYb7Vm2K9PaS7TTUKceDl55XVC", "q8OSsh3mC4Sjrs4OhWUs1zjPdE4zjlQlnOGkLmyB");
+		PushService.setDefaultPushCallback(this, LoginActivity.class);
+		ParseInstallation.getCurrentInstallation().saveInBackground();
+		/*ParsePush.subscribeInBackground("", new SaveCallback() {
+			  @Override
+			  public void done(ParseException e) {
+			    if (e == null) {
+			      Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
+			    } else {
+			      Log.e("com.parse.push", "failed to subscribe for push", e);
+			    }
+			  }
+			});*/
 		etEmail = (EditText) findViewById(R.id.editTextEmail);
 		etPassword = (EditText) findViewById(R.id.editTextPassword);
 

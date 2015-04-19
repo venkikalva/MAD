@@ -111,8 +111,7 @@ public class SingleTripViewAdapter extends ArrayAdapter<SharedPlacedDetails> {
 	
 	private void deleteTripinParse(final int position){
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("SavTripList");
-		query.whereEqualTo("user", ParseUser.getCurrentUser()
-				.getEmail());
+		query.whereEqualTo("user", ParseUser.getCurrentUser());
 		query.findInBackground(new FindCallback<ParseObject>() {
 			@Override
 			public void done(List<ParseObject> objects, ParseException e) {

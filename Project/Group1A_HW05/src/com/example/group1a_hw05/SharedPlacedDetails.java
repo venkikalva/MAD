@@ -4,8 +4,16 @@ import java.util.List;
 
 public class SharedPlacedDetails {
 private List<PlaceDetails>placeList;
-private String tripName;
+private String tripName,traveldate;
 
+
+public String getTraveldate() {
+	return traveldate;
+}
+
+public void setTraveldate(String traveldate) {
+	this.traveldate = traveldate;
+}
 
 public String getTripName() {
 	return tripName;

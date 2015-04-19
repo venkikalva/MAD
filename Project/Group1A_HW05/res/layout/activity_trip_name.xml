@@ -24,15 +24,6 @@
         android:ems="10" />
 
     <Button
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cityname1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="47dp"
-        android:text="@string/cancel" />
-
-    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,5 +31,30 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp"
         android:text="@string/next" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cityname1"
+        android:layout_centerVertical="true"
+        android:text="@string/cancel" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/add"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="48dp"
+        android:text="@string/taveldate" />
+
+    <EditText
+        android:id="@+id/traveldate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView1"
+        android:ems="10" />
 
 </RelativeLayout>

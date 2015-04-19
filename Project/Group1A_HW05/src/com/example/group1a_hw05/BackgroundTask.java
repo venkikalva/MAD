@@ -122,21 +122,14 @@ static PlaceDetailsActivity activity;
 		HttpURLConnection urlConnection = null;
 		try {
 			URL url = new URL(strUrl);
-
-			// Creating an http connection to communicate with url
 			urlConnection = (HttpURLConnection) url.openConnection();
-
-			// Connecting to url
 			urlConnection.connect();
-
-			// Reading data from url
+			int statusCode = urlConnection.getResponseCode();
+			if(statusCode==HttpURLConnection.HTTP_OK){
 			iStream = urlConnection.getInputStream();
-
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					iStream));
-
 			StringBuffer sb = new StringBuffer();
-
 			String line = "";
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
@@ -146,7 +139,8 @@ static PlaceDetailsActivity activity;
 
 			br.close();
 
-		} catch (Exception e) {
+		}
+		}catch (Exception e) {
 			Log.d("Exception while downloading url", e.toString());
 		} finally {
 			iStream.close();

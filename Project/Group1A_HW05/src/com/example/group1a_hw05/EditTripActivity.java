@@ -64,11 +64,14 @@ public static final String MyPREFERENCES = "MyPrefs";
 			}	
 		}
 		String tripName = preference.getString("tripname", null);
+		String travelDate = preference.getString("traveldate", null);
 		details.setTripName(tripName);
+		details.setTraveldate(travelDate);
 		details.setPlaceList(placeList);
 		SingleEditWeatherAdapter adapter = new SingleEditWeatherAdapter(this
 				, placeList);
 		edittriplist.setAdapter(adapter);
+		adapter.setNotifyOnChange(true);
 	}
 	@Override
 	public void onClick(View v) {
@@ -111,7 +114,11 @@ public static final String MyPREFERENCES = "MyPrefs";
 				public void done(ParseException e) {
 					// TODO Auto-generated method stub
 					if (e == null) {
-						
+						preference = getApplicationContext().getSharedPreferences(
+								EditTripActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+						Editor editor = preference.edit();
+			    		editor.clear();
+			    		editor.commit();
 						Intent intent = new Intent(EditTripActivity.this,ViewTripActivity.class);
 						startActivity(intent);
 						
