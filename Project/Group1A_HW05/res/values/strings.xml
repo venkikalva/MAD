@@ -51,5 +51,12 @@
     <string name="triname">TripName</string>
     <string name="dateoftravel">DateOfTravel</string>
     <string name="taveldate">DateOfTravel</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="title_section1">Shared Trips</string>
+    <string name="title_section2">My Trips</string>
+    <string name="title_section3">Add Trip</string>
+    <string name="title_activity_tab_view">TabViewActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="noshared">No Shared Trips to Show</string>
 
 </resources>

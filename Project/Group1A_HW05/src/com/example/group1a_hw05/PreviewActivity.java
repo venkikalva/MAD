@@ -12,6 +12,10 @@ import java.util.List;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.mad.bean.DailyTemp;
+import com.mad.bean.PlaceDetails;
+import com.mad.bean.WeatherDetail;
+import com.mad.util.PlaceJSONParser;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;

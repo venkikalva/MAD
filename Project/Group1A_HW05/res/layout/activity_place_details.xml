@@ -33,10 +33,10 @@
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
-        android:layout_toLeftOf="@+id/gps"
-        android:layout_toRightOf="@+id/search" >
+        android:layout_marginTop="70dp" >
 
     </ListView>
 

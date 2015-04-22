@@ -35,6 +35,21 @@
         android:layout_marginRight="52dp"
         android:src="@drawable/minus" />
 
-    
+    <ImageView
+        android:id="@+id/divider"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/remove"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/remove"
+        android:src="@drawable/div" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/remove"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_marginLeft="14dp" />
 
 </RelativeLayout>

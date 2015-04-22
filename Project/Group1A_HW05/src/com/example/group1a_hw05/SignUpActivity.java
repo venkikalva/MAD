@@ -83,7 +83,7 @@ public class SignUpActivity extends Activity {
 					Log.d("InClass08", "Sign Up successfull");
 					settingCurrentUser();
 					Toast.makeText(SignUpActivity.this, name + " Successfully Logged In", Toast.LENGTH_LONG).show();
-					Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+					Intent intent = new Intent(SignUpActivity.this, TabViewActivity.class);
 					startActivity(intent);
 					SignUpActivity.this.finish();
 				} else {

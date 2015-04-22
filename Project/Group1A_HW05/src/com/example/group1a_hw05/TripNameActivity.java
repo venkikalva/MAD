@@ -65,14 +65,13 @@ static final int DATE_DIALOG_ID = 0;
 			finish();
 			break;
 		case R.id.button2:
-
-			if (tripname.equals("") || traveldate.equals("")) {
+			String tripName = tripname.getText().toString(); 
+			String travelDate = traveldate.getText().toString();
+			if (tripName.equals("") || travelDate.equals("")) {
 				Toast.makeText(TripNameActivity.this,
 						"Please enter missing data", Toast.LENGTH_SHORT)
 						.show();
 			}else{
-			String tripName = tripname.getText().toString(); 
-			String travelDate = traveldate.getText().toString();
 			preference = getApplicationContext().getSharedPreferences(
 					EditTripActivity.MyPREFERENCES, Context.MODE_PRIVATE);
 			Editor editor = preference.edit();

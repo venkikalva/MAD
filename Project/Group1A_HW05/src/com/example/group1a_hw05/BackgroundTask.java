@@ -10,6 +10,10 @@ import java.util.List;
 
 import org.json.JSONObject;
 
+import com.mad.adapter.SingleItemAdapter;
+import com.mad.bean.PlaceDetails;
+import com.mad.util.PlaceJSONParser;
+
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -20,7 +24,7 @@ public class BackgroundTask {
 	static Address fetchedAddress;
 	static double latitude;
 	static double longitude;
-static PlaceDetailsActivity activity;
+	static PlaceDetailsActivity activity;
 
 	static class GeoTask extends AsyncTask<String, Void, List<Address>> {
 		Context mContext;

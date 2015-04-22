@@ -37,8 +37,8 @@ public class LoginActivity extends Activity {
 		*/
 //		Parse.initialize(this, "6MLGqkQz8v7drYBU7wKFaKbBdn2apWjoylkiXJ26", "8HTkoAQvSj9SKjabEsxuiO3fYwViOfH7MhGd831I");
 		Parse.initialize(this, "3YdHC5FIhunoi7rYb7Vm2K9PaS7TTUKceDl55XVC", "q8OSsh3mC4Sjrs4OhWUs1zjPdE4zjlQlnOGkLmyB");
-		PushService.setDefaultPushCallback(this, LoginActivity.class);
-		ParseInstallation.getCurrentInstallation().saveInBackground();
+		/*PushService.setDefaultPushCallback(this, LoginActivity.class);
+		ParseInstallation.getCurrentInstallation().saveInBackground();*/
 		/*ParsePush.subscribeInBackground("", new SaveCallback() {
 			  @Override
 			  public void done(ParseException e) {
@@ -82,7 +82,7 @@ public class LoginActivity extends Activity {
 		if (currentUser != null) {
 			// do stuff with the user
 			Log.d("InClass08", currentUser.getUsername() + "Is current User");
-			Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+			Intent intent = new Intent(LoginActivity.this, TabViewActivity.class);
 			startActivity(intent);
 			this.finish();
 

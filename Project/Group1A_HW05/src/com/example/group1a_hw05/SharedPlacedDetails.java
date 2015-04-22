@@ -1,8 +1,11 @@
 package com.example.group1a_hw05;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SharedPlacedDetails {
+import com.mad.bean.PlaceDetails;
+
+public class SharedPlacedDetails implements Serializable {
 private List<PlaceDetails>placeList;
 private String tripName,traveldate;
 
