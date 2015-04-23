@@ -3,45 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
- <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="@string/email" android:inputType="textEmailAddress">
-
-        <requestFocus />
-    </EditText>
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/editTextEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textSize="20sp" >
 
-    <Button
-        android:id="@+id/buttonLogin"
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:text="@string/login" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="105dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/buttonCreateNewAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonLogin"
-        android:layout_below="@+id/buttonLogin"
-        android:text="@string/new_account" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/bkgcolor"
+        android:text="@string/new_account"
+        android:textSize="23sp"
+        android:typeface="serif" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonCreateNewAccount"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="16dp"
+        android:text="@string/login"
+        android:background="@drawable/bkgcolor"
+        android:textSize="25sp"
+        android:typeface="serif"/>
 
 </RelativeLayout>

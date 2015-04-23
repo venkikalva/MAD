@@ -81,9 +81,10 @@ SharedPreferences preference;
 		weatherSym.setOnClickListener(this);
 			if (imagLink == null || "".equalsIgnoreCase(imagLink)) {
 				image.setImageResource(R.drawable.photo_not_found);
-			} else
-				Picasso.with(PreviewActivity.this).load(imagLink).into(image);
-			
+			} else{
+				String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imagLink+"&key=AIzaSyB4LICuTqTClu8vkkQvpM7v2US23LANqPk";
+				Picasso.with(PreviewActivity.this).load(url).into(image);
+			}
 			title.setText(placeDetails.getPlaceName());
 			address.setText(placeDetails.getVicinity());
 			date.setText(preference.getString("traveldate", null));

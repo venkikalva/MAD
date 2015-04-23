@@ -109,8 +109,13 @@ public class SingleItemAdapter extends ArrayAdapter<PlaceDetails> {
 		disatnce.setText(output +" mi");
 		
 		String imgLink = progItems.get(position).getImageUrl();
+		if(imgLink!=null){
 		String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imgLink+"&key=AIzaSyB4LICuTqTClu8vkkQvpM7v2US23LANqPk";
 		Picasso.with(context).load(url).into(thumbnail);
+		}else{
+			thumbnail.setImageResource(R.drawable.photo_not_found);
+		}
+		
 		return convertView;
 	}
 

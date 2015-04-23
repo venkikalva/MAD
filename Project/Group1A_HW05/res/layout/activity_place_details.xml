@@ -11,7 +11,9 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/search"
         android:ems="10"
-        android:hint="@string/current" />
+        android:hint="@string/current" >
+        <requestFocus />
+    </EditText>
     
     <ListView
         android:id="@+id/listView1"

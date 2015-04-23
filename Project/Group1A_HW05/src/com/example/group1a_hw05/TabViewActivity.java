@@ -77,7 +77,7 @@ public class TabViewActivity extends Activity implements ActionBar.TabListener,O
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.tab_view, menu);
+		getMenuInflater().inflate(R.menu.apps_menu, menu);
 		return true;
 	}
 
@@ -87,7 +87,7 @@ public class TabViewActivity extends Activity implements ActionBar.TabListener,O
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.logout) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

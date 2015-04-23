@@ -1,5 +1,6 @@
 package com.example.group1a_hw05;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,8 +103,9 @@ public class EditTripActivity extends Activity implements View.OnClickListener {
 				loc2.setLatitude(placeList.get(i + 1).getLat());
 				loc2.setLongitude(placeList.get(i + 1).getLngt());
 				float distance = loc1.distanceTo(loc2) / 1609;
-				Log.d("distance", String.valueOf(distance));
-				placeList.get(i).setDistance(distance);
+				NumberFormat formatter = NumberFormat.getCurrencyInstance();
+				String output = formatter.format(distance);
+				placeList.get(i).setDistance(Float.parseFloat(output));
 			}
 		}
 		details.setPlaceList(placeList);
@@ -115,7 +117,8 @@ public class EditTripActivity extends Activity implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.addtrip) {
+		switch (v.getId()) {
+		case R.id.addtrip:
 			preference = getApplicationContext().getSharedPreferences(
 					EditTripActivity.MyPREFERENCES, Context.MODE_PRIVATE);
 			Editor editor = preference.edit();
@@ -126,8 +129,15 @@ public class EditTripActivity extends Activity implements View.OnClickListener {
 			Intent myIntent = new Intent(EditTripActivity.this,
 					SelectPlaceActivity.class);
 			startActivity(myIntent);
+			break;
+		case R.id.save:
+			saveATrip();
+			break;
 
+		default:
+			break;
 		}
+
 	}
 
 	@Override
@@ -143,73 +153,78 @@ public class EditTripActivity extends Activity implements View.OnClickListener {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.save) {
-			if (update.equalsIgnoreCase("yes")) {
-				Gson gson = new Gson();
-				final String json = gson.toJson(details);
-				ParseQuery<ParseObject> query = ParseQuery
-						.getQuery("SavTripList");
-				query.whereEqualTo("user", ParseUser.getCurrentUser());
-				query.whereEqualTo("tripname", tripName);
-				query.findInBackground(new FindCallback<ParseObject>() {
-
-					@Override
-					public void done(List<ParseObject> objects, ParseException e) {
-						for (ParseObject p : objects) {
-							p.put("savetrip", json);
-							p.saveInBackground(new SaveCallback() {
-								
-								@Override
-								public void done(ParseException e) {
-									if(e==null){
-										
-										Intent intent = new Intent(EditTripActivity.this,
-												TabViewActivity.class);
-										startActivity(intent);
-									}
-									
-								}
-							});
-						}
-
-					}
-				});
-			} else {
-				ParseObject todo = new ParseObject("SavTripList");
-				Gson gson = new Gson();
-				String json = gson.toJson(details);
-				todo.put("savetrip", json);
-				todo.put("user", currentUser);
-				todo.put("tripname", tripName);
-				todo.saveInBackground(new SaveCallback() {
-
-					@Override
-					public void done(ParseException e) {
-						// TODO Auto-generated method stub
-						if (e == null) {
-							preference = getApplicationContext()
-									.getSharedPreferences(
-											EditTripActivity.MyPREFERENCES,
-											Context.MODE_PRIVATE);
-							Editor editor = preference.edit();
-							editor.clear();
-							editor.commit();
-							Intent intent = new Intent(EditTripActivity.this,
-									TabViewActivity.class);
-							startActivity(intent);
-
-						} else {
-							Toast.makeText(EditTripActivity.this,
-									e.getMessage(), Toast.LENGTH_LONG).show();
-						}
-					}
-				});
-			}
-
-			return true;
+		if (id == R.id.logout) {
+		
 
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	
+	private void saveATrip(){
+		if (update.equalsIgnoreCase("yes")) {
+			Gson gson = new Gson();
+			final String json = gson.toJson(details);
+			ParseQuery<ParseObject> query = ParseQuery
+					.getQuery("SavTripList");
+			query.whereEqualTo("user", ParseUser.getCurrentUser());
+			query.whereEqualTo("tripname", tripName);
+			query.findInBackground(new FindCallback<ParseObject>() {
+
+				@Override
+				public void done(List<ParseObject> objects, ParseException e) {
+					for (ParseObject p : objects) {
+						p.put("savetrip", json);
+						p.saveInBackground(new SaveCallback() {
+							
+							@Override
+							public void done(ParseException e) {
+								if(e==null){
+									
+									Intent intent = new Intent(EditTripActivity.this,
+											TabViewActivity.class);
+									startActivity(intent);
+								}
+								
+							}
+						});
+					}
+
+				}
+			});
+		} else {
+			ParseObject todo = new ParseObject("SavTripList");
+			Gson gson = new Gson();
+			String json = gson.toJson(details);
+			todo.put("savetrip", json);
+			todo.put("user", currentUser);
+			todo.put("tripname", tripName);
+			todo.saveInBackground(new SaveCallback() {
+
+				@Override
+				public void done(ParseException e) {
+					// TODO Auto-generated method stub
+					if (e == null) {
+						preference = getApplicationContext()
+								.getSharedPreferences(
+										EditTripActivity.MyPREFERENCES,
+										Context.MODE_PRIVATE);
+						Editor editor = preference.edit();
+						editor.clear();
+						editor.commit();
+						Intent intent = new Intent(EditTripActivity.this,
+								TabViewActivity.class);
+						startActivity(intent);
+
+					} else {
+						Toast.makeText(EditTripActivity.this,
+								e.getMessage(), Toast.LENGTH_LONG).show();
+					}
+				}
+			});
+		}
+
+		
 	}
 
 }

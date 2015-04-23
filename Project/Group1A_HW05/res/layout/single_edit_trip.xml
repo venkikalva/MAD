@@ -6,13 +6,21 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/remove"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_marginLeft="14dp" />
+
+    <TextView
         android:id="@+id/triname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="17dp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -22,8 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/triname"
         android:layout_below="@+id/triname"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="16dp"
         android:text="TextView" />
 
     <ImageView
@@ -32,16 +39,15 @@
         android:layout_height="20dp"
         android:layout_above="@+id/textView2"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="52dp"
+        android:layout_marginRight="22dp"
         android:src="@drawable/minus" />
 
     <ImageView
         android:id="@+id/divider"
         android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@+id/remove"
-        android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@+id/remove"
+        android:layout_height="55dp"
+        android:layout_alignRight="@+id/remove"
+        android:layout_alignTop="@+id/remove"
         android:src="@drawable/div" />
 
     <TextView
