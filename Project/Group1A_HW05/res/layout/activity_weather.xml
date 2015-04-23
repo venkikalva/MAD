@@ -36,7 +36,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/addres"
+        android:id="@+id/humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/temp1"
@@ -56,11 +56,11 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/openstatus"
+        android:id="@+id/wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/precipitation"
-        android:layout_alignRight="@+id/addres"
+        android:layout_alignRight="@+id/humidity"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -68,7 +68,7 @@
         android:id="@+id/imageView1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignBottom="@+id/openstatus"
+        android:layout_alignBottom="@+id/wind"
         android:layout_alignParentRight="true"
         android:layout_marginRight="26dp"
         android:src="@drawable/photo_not_found" />

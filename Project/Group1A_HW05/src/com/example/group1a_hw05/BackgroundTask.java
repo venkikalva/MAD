@@ -10,10 +10,6 @@ import java.util.List;
 
 import org.json.JSONObject;
 
-import com.mad.adapter.SingleItemAdapter;
-import com.mad.bean.PlaceDetails;
-import com.mad.util.PlaceJSONParser;
-
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -24,7 +20,7 @@ public class BackgroundTask {
 	static Address fetchedAddress;
 	static double latitude;
 	static double longitude;
-	static PlaceDetailsActivity activity;
+static PlaceDetailsActivity activity;
 
 	static class GeoTask extends AsyncTask<String, Void, List<Address>> {
 		Context mContext;
@@ -126,14 +122,21 @@ public class BackgroundTask {
 		HttpURLConnection urlConnection = null;
 		try {
 			URL url = new URL(strUrl);
+
+			// Creating an http connection to communicate with url
 			urlConnection = (HttpURLConnection) url.openConnection();
+
+			// Connecting to url
 			urlConnection.connect();
-			int statusCode = urlConnection.getResponseCode();
-			if(statusCode==HttpURLConnection.HTTP_OK){
+
+			// Reading data from url
 			iStream = urlConnection.getInputStream();
+
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					iStream));
+
 			StringBuffer sb = new StringBuffer();
+
 			String line = "";
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
@@ -143,8 +146,7 @@ public class BackgroundTask {
 
 			br.close();
 
-		}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			Log.d("Exception while downloading url", e.toString());
 		} finally {
 			iStream.close();

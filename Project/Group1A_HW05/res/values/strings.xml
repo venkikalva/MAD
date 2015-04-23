@@ -45,18 +45,5 @@
     <string name="title_activity_weather">WeatherActivity</string>
     <string name="humidity">Humidity</string>
     <string name="wind">Wind</string>
-    <string name="add">Add</string>
-    <string name="title_activity_edit_trip">EditTripActivity</string>
-    <string name="title_activity_view_trip">ViewTripActivity</string>
-    <string name="triname">TripName</string>
-    <string name="dateoftravel">DateOfTravel</string>
-    <string name="taveldate">DateOfTravel</string>
-    <string name="title_activity_tab">TabActivity</string>
-    <string name="title_section1">Shared Trips</string>
-    <string name="title_section2">My Trips</string>
-    <string name="title_section3">Add Trip</string>
-    <string name="title_activity_tab_view">TabViewActivity</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="noshared">No Shared Trips to Show</string>
 
 </resources>

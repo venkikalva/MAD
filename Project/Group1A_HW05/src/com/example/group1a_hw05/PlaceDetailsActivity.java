@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
-import com.mad.adapter.SingleItemAdapter;
-import com.mad.bean.PlaceDetails;
-import com.mad.util.*;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.util.Log;

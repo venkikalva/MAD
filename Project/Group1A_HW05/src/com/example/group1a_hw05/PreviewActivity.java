@@ -12,10 +12,6 @@ import java.util.List;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
-import com.mad.bean.DailyTemp;
-import com.mad.bean.PlaceDetails;
-import com.mad.bean.WeatherDetail;
-import com.mad.util.PlaceJSONParser;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -37,7 +33,6 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +50,6 @@ PlaceDetails placeDetails;
 double lat;
 double lan;
 WeatherDetail weatherDetails;
-Button addBtn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +66,6 @@ Button addBtn;
 		title = (TextView) findViewById(R.id.cityname1);
 		address = (TextView) findViewById(R.id.address);
 		temp = (TextView) findViewById(R.id.temp);
-		addBtn = (Button) findViewById(R.id.add);
-		addBtn.setOnClickListener(this);
 		weatherSym.setOnClickListener(this);
 			if (imagLink == null || "".equalsIgnoreCase(imagLink)) {
 				image.setImageResource(R.drawable.photo_not_found);
@@ -90,24 +82,12 @@ Button addBtn;
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.imageView4:
+		if(v.getId()==R.id.imageView4){
 
 			Intent intent = new Intent(PreviewActivity.this,WeatherActivity.class);
 			intent.putExtra("weather", weatherDetails);
-			startActivity(intent);
-			break;
-		case R.id.add:
-
-			Intent intent1 = new Intent(PreviewActivity.this,EditTripActivity.class);
-			intent1.putExtra("edittripdetaiils", placeDetails);
-			startActivity(intent1);
-			break;
-		default:
-			break;
+			startActivity(intent);	
 		}
-		
-	
 	}
 	
 	class WeatherTask extends AsyncTask<String, Void, WeatherDetail>{
@@ -184,7 +164,11 @@ Button addBtn;
 
 		} catch (Exception e) {
 			Log.d("Exception while downloading url", e.toString());
-		} 
+		} finally {
+			iStream.close();
+			urlConnection.disconnect();
+		}
+
 		return data;
 
 	}

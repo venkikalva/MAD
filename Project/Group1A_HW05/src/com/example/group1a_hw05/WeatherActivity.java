@@ -1,8 +1,5 @@
 package com.example.group1a_hw05;
 
-import com.mad.adapter.SingleWeatherAdapter;
-import com.mad.bean.WeatherDetail;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,8 +27,8 @@ ListView weatherList;
 		}
 		cityname = (TextView) findViewById(R.id.cityname1);
 		tempvalue = (TextView) findViewById(R.id.tempdeg);
-		humidity = (TextView) findViewById(R.id.addres);
-		wind = (TextView) findViewById(R.id.openstatus);
+		humidity = (TextView) findViewById(R.id.humidity);
+		wind = (TextView) findViewById(R.id.wind);
 		image = (ImageView) findViewById(R.id.imageView1);
 		weatherList = (ListView) findViewById(R.id.listView1);
 		cityname.setText(weatherDetails.getCityName());

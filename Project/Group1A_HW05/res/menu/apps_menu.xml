@@ -1,9 +1,38 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.test.MainActivity" >
 
     <item
-        android:id="@+id/save"
+        android:id="@+id/action_view_all"
         android:orderInCategory="97"
         android:showAsAction="never"
-        android:icon="@drawable/save"
-        android:title="@string/add"/>
+        android:title="@string/view_all"/>
+
+    <item
+        android:id="@+id/action_view_fav"
+        android:orderInCategory="98"
+        android:showAsAction="never"
+        android:title="@string/view_fav"/>
+    <item
+        android:id="@+id/action_clear_fav"
+        android:orderInCategory="99"
+        android:showAsAction="never"
+        android:title="@string/clear_fav"/>
+    <item
+        android:id="@+id/action_view_shared"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/view_shared"/>
+    <item
+        android:id="@+id/action_clear_shared"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/clear_shared"/>
+
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/logout"/>
+    
 </menu>
