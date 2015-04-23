@@ -10,6 +10,10 @@ import java.util.List;
 
 import org.json.JSONObject;
 
+import com.mad.adapter.SingleItemAdapter;
+import com.mad.bean.PlaceDetails;
+import com.mad.util.PlaceJSONParser;
+
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -20,7 +24,7 @@ public class BackgroundTask {
 	static Address fetchedAddress;
 	static double latitude;
 	static double longitude;
-static PlaceDetailsActivity activity;
+	static PlaceDetailsActivity activity;
 
 	static class GeoTask extends AsyncTask<String, Void, List<Address>> {
 		Context mContext;
@@ -122,21 +126,14 @@ static PlaceDetailsActivity activity;
 		HttpURLConnection urlConnection = null;
 		try {
 			URL url = new URL(strUrl);
-
-			// Creating an http connection to communicate with url
 			urlConnection = (HttpURLConnection) url.openConnection();
-
-			// Connecting to url
 			urlConnection.connect();
-
-			// Reading data from url
+			int statusCode = urlConnection.getResponseCode();
+			if(statusCode==HttpURLConnection.HTTP_OK){
 			iStream = urlConnection.getInputStream();
-
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					iStream));
-
 			StringBuffer sb = new StringBuffer();
-
 			String line = "";
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
@@ -146,7 +143,8 @@ static PlaceDetailsActivity activity;
 
 			br.close();
 
-		} catch (Exception e) {
+		}
+		}catch (Exception e) {
 			Log.d("Exception while downloading url", e.toString());
 		} finally {
 			iStream.close();
@@ -191,7 +189,7 @@ static PlaceDetailsActivity activity;
 		@Override
 		protected void onPostExecute(List<PlaceDetails> list) {
 			SingleItemAdapter adapter = new SingleItemAdapter(mContext
-					, list);
+					, list,fetchedAddress);
 			PlaceDetailsActivity pd = new PlaceDetailsActivity();
 			
 			//pd.setDetails(adapter, list,mContext);

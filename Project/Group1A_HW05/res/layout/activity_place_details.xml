@@ -4,41 +4,41 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <ImageView
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:src="@drawable/action_search" />
-
-    <ImageView
-        android:id="@+id/gps"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/nav" />
-
     <EditText
         android:id="@+id/cityname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/search"
-        android:ems="10" />
+        android:ems="10"
+        android:hint="@string/current" />
     
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
-        android:layout_toLeftOf="@+id/gps"
-        android:layout_toRightOf="@+id/search" >
+        android:layout_marginTop="70dp" >
 
     </ListView>
 
+    <ImageView
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/action_search" />
+
+    <Button
+        android:id="@+id/enter"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/cityname"
+        android:text="@string/enter" />
 
 </RelativeLayout>

@@ -12,6 +12,10 @@ import java.util.List;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.mad.bean.DailyTemp;
+import com.mad.bean.PlaceDetails;
+import com.mad.bean.WeatherDetail;
+import com.mad.util.PlaceJSONParser;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -23,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -33,6 +38,7 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,18 +50,21 @@ public class PreviewActivity extends Activity implements View.OnClickListener {
 
 ImageView image,weatherSym;
 TextView title,temp;
-TextView address;
+TextView address,date;
 String imagLink;
 PlaceDetails placeDetails;
 double lat;
 double lan;
 WeatherDetail weatherDetails;
-
+Button addBtn;
+SharedPreferences preference;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_preview);
-		
+		preference = getApplicationContext()
+				.getSharedPreferences(EditTripActivity.MyPREFERENCES,
+						Context.MODE_PRIVATE);
 		if(getIntent().getExtras().getSerializable("single")!=null){
 			 placeDetails = (PlaceDetails) getIntent().getExtras().getSerializable("single");
 			imagLink=placeDetails.getImageUrl();
@@ -66,6 +75,9 @@ WeatherDetail weatherDetails;
 		title = (TextView) findViewById(R.id.cityname1);
 		address = (TextView) findViewById(R.id.address);
 		temp = (TextView) findViewById(R.id.temp);
+		addBtn = (Button) findViewById(R.id.add);
+		date = (TextView) findViewById(R.id.date);
+		addBtn.setOnClickListener(this);
 		weatherSym.setOnClickListener(this);
 			if (imagLink == null || "".equalsIgnoreCase(imagLink)) {
 				image.setImageResource(R.drawable.photo_not_found);
@@ -74,6 +86,7 @@ WeatherDetail weatherDetails;
 			
 			title.setText(placeDetails.getPlaceName());
 			address.setText(placeDetails.getVicinity());
+			date.setText(preference.getString("traveldate", null));
 			lat=  placeDetails.getLat();
 			lan= placeDetails.getLngt();
 			new WeatherTask().execute("http://api.openweathermap.org/data/2.5/forecast/daily?lat="+lat+"&lon="+lan+"&cnt=10&&units=imperial&mode=jsonc");
@@ -82,12 +95,24 @@ WeatherDetail weatherDetails;
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId()==R.id.imageView4){
+		switch (v.getId()) {
+		case R.id.imageView4:
 
 			Intent intent = new Intent(PreviewActivity.this,WeatherActivity.class);
 			intent.putExtra("weather", weatherDetails);
-			startActivity(intent);	
+			startActivity(intent);
+			break;
+		case R.id.add:
+
+			Intent intent1 = new Intent(PreviewActivity.this,EditTripActivity.class);
+			intent1.putExtra("edittripdetaiils", placeDetails);
+			startActivity(intent1);
+			break;
+		default:
+			break;
 		}
+		
+	
 	}
 	
 	class WeatherTask extends AsyncTask<String, Void, WeatherDetail>{
@@ -122,13 +147,18 @@ WeatherDetail weatherDetails;
 		protected void onPostExecute(WeatherDetail result) {
 			// TODO Auto-generated method stub
 			//super.onPostExecute(result);
+			if(result!=null){
 			List<DailyTemp> dailyTempList = result.getDailyTemp();
 			String dayTemp = dailyTempList.get(0).getDay();
 			temp.setText(dayTemp);
+			String icon = dailyTempList.get(0).getIcon();
+			String url = "http://openweathermap.org/img/w/"+icon+".png";
+			Log.d("url",url);
+			Picasso.with(PreviewActivity.this).load(url).into(weatherSym);
 			weatherDetails = result;
 		}
 		
-		
+		}
 	}
 	
 	
@@ -164,11 +194,7 @@ WeatherDetail weatherDetails;
 
 		} catch (Exception e) {
 			Log.d("Exception while downloading url", e.toString());
-		} finally {
-			iStream.close();
-			urlConnection.disconnect();
-		}
-
+		} 
 		return data;
 
 	}

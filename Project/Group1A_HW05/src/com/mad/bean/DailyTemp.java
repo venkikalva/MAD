@@ -1,4 +1,4 @@
-package com.example.group1a_hw05;
+package com.mad.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,7 +8,23 @@ public class DailyTemp implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private String max,min,description,humidity,main,speed,day,precipitation;
+private String max,min,description,humidity,main,speed,day,icon,precipitation,dt;
+
+public String getDt() {
+	return dt;
+}
+
+public void setDt(String dt) {
+	this.dt = dt;
+}
+
+public String getIcon() {
+	return icon;
+}
+
+public void setIcon(String icon) {
+	this.icon = icon;
+}
 
 public String getPrecipitation() {
 	return precipitation;

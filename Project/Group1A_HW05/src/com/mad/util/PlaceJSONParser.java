@@ -1,4 +1,4 @@
-package com.example.group1a_hw05;
+package com.mad.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +12,9 @@ import android.util.Log;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mad.bean.DailyTemp;
+import com.mad.bean.PlaceDetails;
+import com.mad.bean.WeatherDetail;
 
 public class PlaceJSONParser {
 	
@@ -88,6 +91,7 @@ public class PlaceJSONParser {
 	        String vicinity="-NA-";
 	        String latitude="";
 	        String longitude="";
+	        String openStatus="";
 	 
 	        try {
 	            // Extracting Place name, if available
@@ -102,16 +106,22 @@ public class PlaceJSONParser {
 	                details.setVicinity(vicinity);
 	                
 	            }
-	            if(!jPlace.isNull("icon")){
-	                String imageUrl = jPlace.getString("icon");
-	                details.setImageUrl(imageUrl);
-	                
-	            }
 	            
 	            latitude = jPlace.getJSONObject("geometry").getJSONObject("location").getString("lat");
 	            details.setLat(Double.parseDouble(latitude));
 	            longitude = jPlace.getJSONObject("geometry").getJSONObject("location").getString("lng");
 	            details.setLngt(Double.parseDouble(longitude));
+	            openStatus =jPlace.getJSONObject("opening_hours").getString("open_now");
+	            details.setOpenstatus(openStatus);
+	            JSONArray photosArray = jPlace.getJSONArray("photos");
+	            for(int i=0;i<photosArray.length();i++){
+	            	JSONObject photoObj = photosArray.getJSONObject(i);
+	            	if(!photoObj.isNull("photo_reference")){
+	            		String imageUrl = photoObj.getString("photo_reference");
+		                details.setImageUrl(imageUrl);
+	            	}
+	            }
+	            
 	        } catch (JSONException e) {
 	            e.printStackTrace();
 	        }
@@ -121,6 +131,9 @@ public class PlaceJSONParser {
 	    	DailyTemp dailyTemp = new DailyTemp();
 	    	
 	    	try {
+	    		if(!jPlace.isNull("dt")){
+	                dailyTemp.setDt(jPlace.getString("dt"));
+	            }
 				JSONObject temp = jPlace.getJSONObject("temp");
 				if(!temp.isNull("day")){
 	                dailyTemp.setDay(temp.getString("day"));
@@ -136,9 +149,11 @@ public class PlaceJSONParser {
 	            }
 	            JSONArray array= jPlace.getJSONArray("weather");
 	            for(int i=0;i<array.length();i++){
-	            	//dailyTemp.setMain(array.getString(index));
+	            	JSONObject obj = ((JSONObject)array.get(i));
+		        	  dailyTemp.setIcon(obj.getString("icon")); 
 	            	
 	            }
+	            
 				
 				
 			} catch (JSONException e) {

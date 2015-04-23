@@ -1,5 +1,9 @@
 package com.example.group1a_hw05;
 
+import com.mad.adapter.SingleWeatherAdapter;
+import com.mad.bean.WeatherDetail;
+import com.squareup.picasso.Picasso;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,15 +31,17 @@ ListView weatherList;
 		}
 		cityname = (TextView) findViewById(R.id.cityname1);
 		tempvalue = (TextView) findViewById(R.id.tempdeg);
-		humidity = (TextView) findViewById(R.id.humidity);
-		wind = (TextView) findViewById(R.id.wind);
+		humidity = (TextView) findViewById(R.id.addres);
+		wind = (TextView) findViewById(R.id.openstatus);
 		image = (ImageView) findViewById(R.id.imageView1);
 		weatherList = (ListView) findViewById(R.id.listView1);
 		cityname.setText(weatherDetails.getCityName());
 		tempvalue.setText(weatherDetails.getDailyTemp().get(0).getDay());
 		humidity.setText(weatherDetails.getDailyTemp().get(0).getHumidity());
 		wind.setText(weatherDetails.getDailyTemp().get(0).getSpeed());
-		
+		String icon=weatherDetails.getDailyTemp().get(0).getIcon();
+		String url = "http://openweathermap.org/img/w/"+icon+".png";
+		Picasso.with(this).load(url).into(image);
 		SingleWeatherAdapter adapter = new SingleWeatherAdapter(this
 				, weatherDetails.getDailyTemp());
 		weatherList.setAdapter(adapter);

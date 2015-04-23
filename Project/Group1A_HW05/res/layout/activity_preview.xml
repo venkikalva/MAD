@@ -4,15 +4,6 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/photo_not_found" />
-
     <TextView
         android:id="@+id/cityname1"
         android:layout_width="wrap_content"
@@ -44,13 +35,13 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/wind"
-        android:layout_below="@+id/wind"
+        android:layout_alignLeft="@+id/openstatus"
+        android:layout_below="@+id/openstatus"
         android:layout_marginTop="46dp"
         android:text="@string/date" />
 
     <TextView
-        android:id="@+id/wind"
+        android:id="@+id/openstatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/tempdeg"
@@ -61,25 +52,45 @@
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/wind"
-        android:layout_alignBottom="@+id/wind"
+        android:layout_alignBaseline="@+id/openstatus"
+        android:layout_alignBottom="@+id/openstatus"
         android:layout_alignLeft="@+id/address"
         android:text="TextView" />
 
-    <TextView
-        android:id="@+id/temp"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/add"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_toRightOf="@+id/phone"
-        android:text="TextView" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:text="@string/add" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/openstatus"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:src="@drawable/photo_not_found" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignBottom="@+id/date"
-        android:layout_toLeftOf="@+id/phone"
+        android:layout_below="@+id/phone"
+        android:layout_marginTop="28dp"
+        android:layout_toRightOf="@+id/imageView1"
         android:src="@drawable/sun" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/date"
+        android:layout_alignBottom="@+id/date"
+        android:layout_alignLeft="@+id/cityname1"
+        android:text="TextView" />
 
 </RelativeLayout>

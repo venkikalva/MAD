@@ -1,8 +1,24 @@
-package com.example.group1a_hw05;
+package com.mad.adapter;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+
+
+
+
+
+
+
+import com.example.group1a_hw05.PreviewActivity;
+import com.example.group1a_hw05.R;
+import com.example.group1a_hw05.R.drawable;
+import com.example.group1a_hw05.R.id;
+import com.example.group1a_hw05.R.layout;
+import com.mad.bean.DailyTemp;
+import com.squareup.picasso.Picasso;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -29,7 +45,7 @@ public class SingleWeatherAdapter extends ArrayAdapter<DailyTemp> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
-		
+		if (convertView == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.single_weather,
@@ -42,19 +58,26 @@ public class SingleWeatherAdapter extends ArrayAdapter<DailyTemp> {
 					.findViewById(R.id.imageView1);
 			holder.precipitation = (TextView) convertView
 					.findViewById(R.id.precipitation);
-			
-
-		
-
+			convertView.setTag(holder);
+		}
 		holder = (ViewHolder) convertView.getTag();
-		//TextView date = holder.date;
+		TextView date = holder.date;
 		TextView temp = holder.temp;
 		TextView precipitation = holder.precipitation;
 		ImageView thumbnail = holder.thumbnail;
-		//date.setText("");
+		long timeStamp = Long.parseLong(progItems.get(position).getDt());
+		Date time=new java.util.Date((long)timeStamp*1000);
+		String str1 = time.toString().substring(4, 7);
+		String str2 = time.toString().substring(8, 10);
+		String str3 = time.toString().substring(24, 28);
+		String finalDate= str1+"/"+str2+"/"+str3;
+		date.setText(finalDate);
 		temp.setText(progItems.get(position).getMax());
 		precipitation.setText(progItems.get(position).getPrecipitation());
-		thumbnail.setImageResource(R.drawable.sun);
+		String icon=progItems.get(position).getIcon();
+		String url = "http://openweathermap.org/img/w/"+icon+".png";
+		Picasso.with(context).load(url).into(thumbnail);
+		//thumbnail.setImageResource(R.drawable.sun);
 		return convertView;
 	}
 

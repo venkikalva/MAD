@@ -1,4 +1,4 @@
-package com.example.group1a_hw05;
+package com.mad.util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +10,8 @@ import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
+
+import com.mad.bean.Item;
 
 import android.util.Log;
 /*

@@ -1,31 +1,31 @@
 package com.example.group1a_hw05;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
-import java.util.zip.Inflater;
+import java.util.Locale;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Location;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.util.Log;
+import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.mad.adapter.SingleItemAdapter;
+import com.mad.bean.PlaceDetails;
+
 public class PlaceDetailsActivity extends Activity implements View.OnClickListener,BackgroundTask.senddata{
 ImageView search;
-ImageView gps;
+Button enter;
 EditText cityname;
 LocationManager locManager;
 LocationListener mlistner;
@@ -45,78 +45,22 @@ View view;
 		locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		search = (ImageView)findViewById(R.id.search);
 		mailListView = (ListView) findViewById(R.id.listView1);
-		gps = (ImageView)findViewById(R.id.gps);
+		enter = (Button)findViewById(R.id.enter);
 		cityname = (EditText)findViewById(R.id.cityname);
 		search.setOnClickListener(this);
+		enter.setOnClickListener(this);
+		//new BackgroundTask.GeoTask(PlaceDetailsActivity.this,PlaceDetailsActivity.this).execute(cityName);
 		context=this;
 	}
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.search:
+		case R.id.enter:
 			String cityName= cityname.getText().toString();
 			new BackgroundTask.GeoTask(PlaceDetailsActivity.this,PlaceDetailsActivity.this).execute(cityName);
 			//new BackgroundTask.ParserTask(PlaceDetailsActivity.this,PlaceDetailsActivity.this);
 			break;
-		case R.id.gps:
-			if(!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("GPS is not enables")
-				.setMessage("Would You like to turn on GPS")
-				.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-						startActivity(intent);
-						
-					}
-					
-					
-				}).setNegativeButton("No", new DialogInterface.OnClickListener(){
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-						finish();
-						
-					}
-					
-					
-				});
-				AlertDialog alert = builder.create();
-				alert.show();
-			}else{
-				mlistner = new LocationListener() {
-					
-					@Override
-					public void onStatusChanged(String provider, int status, Bundle extras) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-					@Override
-					public void onProviderEnabled(String provider) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-					@Override
-					public void onProviderDisabled(String provider) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-					@Override
-					public void onLocationChanged(Location location) {
-						new BackgroundTask.GeoTask(PlaceDetailsActivity.this,PlaceDetailsActivity.this).execute(location.toString());
-						
-					}
-				};
-				
-			}
-			break;
-
+		
 		default:
 			break;
 		}
@@ -158,6 +102,35 @@ View view;
 				});
 	}
 	
-	
+	 public String getLocationName(double lattitude, double longitude) {
+
+		    String cityName = "Not Found";
+		    Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+		    try {
+
+		        List<Address> addresses = gcd.getFromLocation(lattitude, longitude,
+		                10);
+
+		        for (Address adrs : addresses) {
+		            if (adrs != null) {
+
+		                String city = adrs.getLocality();
+		                if (city != null && !city.equals("")) {
+		                    cityName = city;
+		                    System.out.println("city ::  " + cityName);
+		                } else {
+
+		                }
+		                // // you should also try with addresses.get(0).toSring();
+
+		            }
+
+		        }
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		    return cityName;
+
+		}	
 		
 }

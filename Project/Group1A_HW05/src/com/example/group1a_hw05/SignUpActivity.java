@@ -80,10 +80,10 @@ public class SignUpActivity extends Activity {
 		user.signUpInBackground(new SignUpCallback() {
 			public void done(ParseException e) {
 				if (e == null) {
-					Log.d("InClass08", "Sign Up successfull");
+					Log.d("demo", "Sign Up successfull");
 					settingCurrentUser();
 					Toast.makeText(SignUpActivity.this, name + " Successfully Logged In", Toast.LENGTH_LONG).show();
-					Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+					Intent intent = new Intent(SignUpActivity.this, TabViewActivity.class);
 					startActivity(intent);
 					SignUpActivity.this.finish();
 				} else {
@@ -98,10 +98,10 @@ public class SignUpActivity extends Activity {
 			public void done(ParseUser user, ParseException e) {
 				if (user != null) {
 					// The current user is now set to user.
-					Log.d("DemoParse", "The current user is now set to user.");
+					Log.d("demo", "The current user is now set to user.");
 				} else {
 					// The token could not be validated.
-					Log.d("DemoParse", "The token could not be validated.");
+					Log.d("demo", "The token could not be validated.");
 				}
 			}
 		});

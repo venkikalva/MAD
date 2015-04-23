@@ -1,4 +1,4 @@
-package com.example.group1a_hw05;
+package com.mad.bean;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.example.group1a_hw05;
+package com.mad.bean;
 
 import java.io.Serializable;
 
@@ -6,8 +6,20 @@ public class PlaceDetails implements Serializable {
 	
 	private double lat;
 	private double lngt;
-	private String placeName,vicinity,url,imageUrl;
-	
+	private String placeName,vicinity,url,imageUrl,openstatus;
+	public String getOpenstatus() {
+		return openstatus;
+	}
+	public void setOpenstatus(String openstatus) {
+		this.openstatus = openstatus;
+	}
+	private float distance;
+	public float getDistance() {
+		return distance;
+	}
+	public void setDistance(float distance) {
+		this.distance = distance;
+	}
 	public String getImageUrl() {
 		return imageUrl;
 	}
